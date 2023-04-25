@@ -23,12 +23,12 @@ public class MainAccount {
     }
     private static void readFile(List<Account> accountList) throws IOException{
         try{
-            File f = new File(String.valueOf(new FileReader("/Users/viquoclam/Documents/Java - module 2/NguOi/account/Register")));
-            FileReader fileReader = new FileReader(String.valueOf(f));
+            File f = new File("/Users/viquoclam/Documents/Java - module 2/NguOi/account/Register");
+            FileReader fileReader = new FileReader(f);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine())!= null){
-                String[] ch =  line.split(", ");
+                String[] ch =  line.split(",");
                 accountList.add (new Account(Integer.parseInt(ch[0]),ch[1],ch[2],ch[3],ch[4],ch[5]));
 
             }
@@ -41,8 +41,7 @@ public class MainAccount {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         List<Account> accountList = new ArrayList<>();
-        readFile((accountList));
-
+        readFile(accountList);
         int choice;
         do{
             System.out.println("==========  Please choose your choice!  ==========");
@@ -57,14 +56,10 @@ public class MainAccount {
                     String username = scanner.nextLine();
                     System.out.println("Enter password:");
                     String password = scanner.nextLine();
-                    boolean exists = false;
                     for (Account acc: accountList) {
                         if (acc.getUsername().equals(username) && acc.getPassword().equals(password)){
-                            System.out.println("Hello" + acc.getFullname() + ".");
-                            break;
-                        }
-                        if(!exists) {
-                            System.out.println("Invalid username or password.");
+
+                            System.out.println("Hello " + acc.getFullname() + ".");
                         }
                     }
                     break;
@@ -91,6 +86,7 @@ public class MainAccount {
                         int id = accountList.size() + 1;
                         Account account = new Account(id,usr,pass,fullname,phoneNumber,address);
                         accountList.add(account);
+                        writeFile(accountList);
                         System.out.println("Successfully created!");
                     }
                     break;

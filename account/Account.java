@@ -70,13 +70,9 @@ public class Account {
 
     @Override
     public String toString() {
-        return "account.Account{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fullname='" + fullname + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return  + id + "," + username + "," + password + ","
+                + fullname + "," +
+                phoneNumber + "," +
+                 address;
     }
 }
